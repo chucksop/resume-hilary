@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashibogwu Chukwudi Hilary – Hardware & Cloud Enthusiast</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    :root {
+      --google-blue: #4285F4;
+      --google-red: #EA4335;
+      --google-yellow: #FBBC05;
+      --google-green: #34A853;
+      --dark: #202124;
+      --gray: #5F6368;
+      --light-gray: #F1F3F4;
+      --bg: #FFFFFF;
+      --card-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+    }
+    
+    body {
+      font-family: 'Google Sans', 'Roboto', sans-serif;
+      background-color: var(--bg);
+      color: var(--dark);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* --- Sticky Modern Navbar --- */
+    nav {
+      position: sticky;
+      top: 0;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 100;
+      padding: 15px 0;
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .nav-logo {
+      font-weight: 700;
+      color: var(--google-blue);
+      font-size: 1.2rem;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+    
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    
+    .nav-links a:hover {
+      color: var(--google-blue);
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--google-blue);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    /* --- Header --- */
+    header {
+      text-align: center;
+      margin: 40px 0 60px;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #f6f9fc, white);
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+    }
+    
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin: 0 0 10px 0;
+      background: linear-gradient(45deg, var(--google-blue), var(--google-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .subtitle {
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--gray);
+      margin-bottom: 25px;
+    }
+    
+    .header-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .btn {
+      padding: 10px 20px;
+      border-radius: 24px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    
+    .btn-primary {
+      background: var(--google-blue);
+      color: white;
+    }
+    
+    .btn-outline {
+      border: 1px solid var(--google-blue);
+      color: var(--google-blue);
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 2px 5px rgba(66, 133, 244, 0.3);
+    }
+    
+    /* --- Sections --- */
+    section {
+      background-color: var(--bg);
+      margin-bottom: 40px;
+      padding: 35px;
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+    }
+    
+    h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-top: 0;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 25px;
+      background: var(--google-blue);
+      border-radius: 4px;
+    }
+    
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+    
+    .job {
+      margin-bottom: 30px;
+    }
+    
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 5px;
+    }
+    
+    .job-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    
+    .job-company {
+      color: var(--google-blue);
+    }
+    
+    .job-period {
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    
+    ul {
+      padding-left: 22px;
+    }
+    
+    li {
+      margin-bottom: 10px;
+      position: relative;
+    }
+    
+    li::before {
+      content: '•';
+      color: var(--google-blue);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+    
+    /* --- Skills Tags --- */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    
+    .skill-tag {
+      background: var(--light-gray);
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    
+    .skill-tag:hover {
+      background: var(--google-blue);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    /* --- Contact --- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    
+    .contact-card {
+      background: var(--light-gray);
+      padding: 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: all 0.2s ease;
+    }
+    
+    .contact-card:hover {
+      background: var(--google-blue);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(66, 133, 244, 0.2);
+    }
+    
+    .contact-icon {
+      font-size: 1.5rem;
+    }
+    
+    /* --- Footer --- */
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .nav-links {
+        gap: 15px;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .header-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      section {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="nav-logo">ACH</div>
+      <div class="nav-links">
+        <a href="#profile">Profile</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1>Ashibogwu Chukwudi Hilary</h1>
+      <p class="subtitle">Hardware & Cloud Enthusiast | First-Class Computer Science Graduate</p>
+      <div class="header-buttons">
+        <a href="#contact" class="btn btn-primary">Hire Me</a>
+        <a href="#" class="btn btn-outline">Download Résumé</a>
+      </div>
+    </header>
+
+    <section id="profile">
+      <h2><span class="material-icons">person</span>Profile</h2>
+      <p>Recent <strong>First-Class Computer Science graduate</strong> with hands-on experience in hardware troubleshooting, cloud computing, and full-stack development. Passionate about optimizing systems where hardware meets software. Built multiple projects combining IoT, cloud services, and automation.</p>
+    </section>
+
+    <section id="experience">
+      <h2><span class="material-icons">work</span>Experience</h2>
+      
+      <div class="job">
+        <div class="job-header">
+          <div>
+            <span class="job-title">IT Support & Web Developer</span> – 
+            <span class="job-company">New Horizons Solutions</span>
+          </div>
+          <span class="job-period">2023–2024</span>
+        </div>
+        <ul>
+          <li>Diagnosed and repaired 50+ hardware issues (laptops, servers, networking equipment)</li>
+          <li>Developed 3 responsive company websites using HTML/CSS/JavaScript</li>
+          <li>Automated inventory tracking with Python scripts, reducing manual work by 30%</li>
+        </ul>
+      </div>
+      
+      <div class="job">
+        <div class="job-header">
+          <div>
+            <span class="job-title">Freelance Tech Consultant</span> – 
+            <span class="job-company">Self-Employed</span>
+          </div>
+          <span class="job-period">2021–Present</span>
+        </div>
+        <ul>
+          <li>Built custom PCs for 15+ clients with optimized cooling/power solutions</li>
+          <li>Set up smart home systems (Raspberry Pi + Home Assistant) for local businesses</li>
+          <li>Taught basic programming workshops to high school students</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2><span class="material-icons">code</span>Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-tag">Python</div>
+        <div class="skill-tag">JavaScript</div>
+        <div class="skill-tag">HTML/CSS</div>
+        <div class="skill-tag">Linux</div>
+        <div class="skill-tag">AWS Basics</div>
+        <div class="skill-tag">PC Building</div>
+        <div class="skill-tag">Networking</div>
+        <div class="skill-tag">Raspberry Pi</div>
+        <div class="skill-tag">Git</div>
+        <div class="skill-tag">UI/UX Design</div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2><span class="material-icons">folder</span>Projects</h2>
+      <h3>Smart Campus Monitoring System (Final Year Project)</h3>
+      <ul>
+        <li>Built IoT sensors to track classroom occupancy/temperature using ESP32</li>
+        <li>Visualized data on a React dashboard with Firebase backend</li>
+        <li>Won "Best Hardware Project" at university tech fair</li>
+      </ul>
+      
+      <h3>LAN Party Optimization Toolkit</h3>
+      <ul>
+        <li>Created scripts to automate game server deployments on local networks</li>
+        <li>Reduced setup time from 1 hour to 10 minutes for 8-player sessions</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2><span class="material-icons">email</span>Contact</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <span class="material-icons contact-icon">email</span>
+          <span>hilary.ashibogwu@example.com</span>
+        </div>
+        <div class="contact-card">
+          <span class="material-icons contact-icon">phone</span>
+          <span>+234 812 345 6789</span>
+        </div>
+        <div class="contact-card">
+          <span class="material-icons contact-icon">link</span>
+          <span>linkedin.com/in/ashibogwu-hilary</span>
+        </div>
+        <div class="contact-card">
+          <span class="material-icons contact-icon">code</span>
+          <span>github.com/ashibogwu-projects</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 Ashibogwu Chukwudi Hilary. All rights reserved.</p>
+      <p>Built with HTML/CSS • Hosted on GitHub Pages</p>
+    </footer>
+  </div>
+</body>
+</html>
