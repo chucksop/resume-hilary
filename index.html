@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ashibogwu Chukwudi Hilary – Hardware & Cloud Enthusiast</title>
+  <title>Ashibogwu Chukwudi Hilary – Web & Hardware Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- html2pdf library for PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
     :root {
       --google-blue: #4285F4;
@@ -36,7 +38,7 @@
       padding: 0 20px;
     }
     
-    /* --- Sticky Modern Navbar --- */
+    /* --- Sticky Modern Navbar with Animation --- */
     nav {
       position: sticky;
       top: 0;
@@ -44,6 +46,12 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       z-index: 100;
       padding: 15px 0;
+      transform: translateY(0);
+      transition: all 0.3s ease;
+    }
+    
+    nav.hidden {
+      transform: translateY(-100%);
     }
     
     .nav-container {
@@ -59,6 +67,11 @@
       font-weight: 700;
       color: var(--google-blue);
       font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .nav-logo:hover {
+      transform: scale(1.05);
     }
     
     .nav-links {
@@ -94,27 +107,61 @@
       width: 100%;
     }
     
-    /* --- Header --- */
+    /* --- Header with Profile Picture and Animation --- */
     header {
       text-align: center;
       margin: 40px 0 60px;
-      padding: 40px 20px;
+      padding: 60px 20px 40px;
       background: linear-gradient(135deg, #f6f9fc, white);
       border-radius: 12px;
       box-shadow: var(--card-shadow);
+      position: relative;
+      animation: fadeIn 0.8s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: all 0.3s ease;
+    }
+    
+    .profile-pic:hover {
+      transform: translateX(-50%) scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
     }
     
     h1 {
-      font-size: 2.8rem;
+      font-size: 2.5rem;
       font-weight: 700;
-      margin: 0 0 10px 0;
+      margin: 20px 0 10px 0;
       background: linear-gradient(45deg, var(--google-blue), var(--google-green));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      animation: textGradient 8s ease infinite;
+      background-size: 200% 200%;
+    }
+    
+    @keyframes textGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
     
     .subtitle {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 400;
       color: var(--gray);
       margin-bottom: 25px;
@@ -132,7 +179,9 @@
       border-radius: 24px;
       font-weight: 500;
       text-decoration: none;
-      transition: all 0.2s ease;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
     
     .btn-primary {
@@ -147,17 +196,66 @@
     
     .btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 2px 5px rgba(66, 133, 244, 0.3);
+      box-shadow: 0 5px 15px rgba(66, 133, 244, 0.3);
     }
     
-    /* --- Sections --- */
+    .btn:active {
+      transform: translateY(0);
+    }
+    
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.5);
+      opacity: 0;
+      border-radius: 100%;
+      transform: scale(1, 1) translate(-50%);
+      transform-origin: 50% 50%;
+    }
+    
+    .btn:focus:not(:active)::after {
+      animation: ripple 1s ease-out;
+    }
+    
+    @keyframes ripple {
+      0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(20, 20);
+        opacity: 0;
+      }
+    }
+    
+    /* --- Sections with Animation --- */
     section {
       background-color: var(--bg);
       margin-bottom: 40px;
       padding: 35px;
       border-radius: 12px;
       box-shadow: var(--card-shadow);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: slideUp 0.6s forwards;
     }
+    
+    @keyframes slideUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    section:nth-child(1) { animation-delay: 0.1s; }
+    section:nth-child(2) { animation-delay: 0.2s; }
+    section:nth-child(3) { animation-delay: 0.3s; }
+    section:nth-child(4) { animation-delay: 0.4s; }
+    section:nth-child(5) { animation-delay: 0.5s; }
     
     h2 {
       font-size: 1.6rem;
@@ -188,6 +286,11 @@
     
     .job {
       margin-bottom: 30px;
+      transition: all 0.3s ease;
+    }
+    
+    .job:hover {
+      transform: translateX(5px);
     }
     
     .job-header {
@@ -218,6 +321,11 @@
     li {
       margin-bottom: 10px;
       position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    li:hover {
+      transform: translateX(5px);
     }
     
     li::before {
@@ -229,7 +337,7 @@
       margin-left: -1em;
     }
     
-    /* --- Skills Tags --- */
+    /* --- Skills Tags with Animation --- */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -245,15 +353,17 @@
       font-weight: 500;
       text-align: center;
       transition: all 0.2s ease;
+      transform: scale(1);
     }
     
     .skill-tag:hover {
       background: var(--google-blue);
       color: white;
-      transform: translateY(-2px);
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 4px 8px rgba(66, 133, 244, 0.2);
     }
     
-    /* --- Contact --- */
+    /* --- Contact Cards with Animation --- */
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -267,18 +377,24 @@
       display: flex;
       align-items: center;
       gap: 15px;
-      transition: all 0.2s ease;
+      transition: all 0.3s ease;
+      transform: perspective(500px) rotateY(0deg);
     }
     
     .contact-card:hover {
       background: var(--google-blue);
       color: white;
-      transform: translateY(-3px);
-      box-shadow: 0 4px 8px rgba(66, 133, 244, 0.2);
+      transform: perspective(500px) rotateY(5deg) translateY(-3px);
+      box-shadow: 0 8px 15px rgba(66, 133, 244, 0.3);
+    }
+    
+    .contact-card:hover .contact-icon {
+      transform: scale(1.2);
     }
     
     .contact-icon {
       font-size: 1.5rem;
+      transition: all 0.3s ease;
     }
     
     /* --- Footer --- */
@@ -287,6 +403,25 @@
       padding: 30px 0;
       color: var(--gray);
       font-size: 0.9rem;
+      animation: fadeIn 1s ease-out;
+    }
+    
+    /* --- Progress Bar for Scroll --- */
+    .progress-container {
+      width: 100%;
+      height: 4px;
+      background: transparent;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    
+    .progress-bar {
+      height: 4px;
+      background: var(--google-blue);
+      width: 0%;
+      transition: width 0.1s ease;
     }
     
     /* --- Responsive --- */
@@ -301,7 +436,7 @@
       }
       
       h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
       }
       
       .header-buttons {
@@ -312,11 +447,26 @@
       section {
         padding: 25px;
       }
+      
+      .profile-pic {
+        width: 100px;
+        height: 100px;
+        top: -50px;
+      }
+      
+      .skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      }
     }
   </style>
 </head>
 <body>
-  <nav>
+  <!-- Scroll progress indicator -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <nav id="navbar">
     <div class="nav-container">
       <div class="nav-logo">ACH</div>
       <div class="nav-links">
@@ -331,17 +481,19 @@
 
   <div class="container">
     <header>
+      <!-- Replace with your actual image path -->
+      <img src="profile-pic.jpg" alt="Ashibogwu Chukwudi Hilary" class="profile-pic">
       <h1>Ashibogwu Chukwudi Hilary</h1>
-      <p class="subtitle">Hardware & Cloud Enthusiast | First-Class Computer Science Graduate</p>
+      <p class="subtitle">Web Developer & Hardware Specialist | B.Sc. Computer Science</p>
       <div class="header-buttons">
         <a href="#contact" class="btn btn-primary">Hire Me</a>
-        <a href="#" class="btn btn-outline">Download Résumé</a>
+        <button id="downloadBtn" class="btn btn-outline">Download Résumé</button>
       </div>
     </header>
 
     <section id="profile">
       <h2><span class="material-icons">person</span>Profile</h2>
-      <p>Recent <strong>First-Class Computer Science graduate</strong> with hands-on experience in hardware troubleshooting, cloud computing, and full-stack development. Passionate about optimizing systems where hardware meets software. Built multiple projects combining IoT, cloud services, and automation.</p>
+      <p>Recent Computer Science graduate with hands-on experience in <strong>frontend development</strong> and <strong>hardware systems</strong>. Passionate about building functional web applications while maintaining strong hardware troubleshooting skills. Quick learner who thrives in technical problem-solving environments.</p>
     </section>
 
     <section id="experience">
@@ -350,30 +502,31 @@
       <div class="job">
         <div class="job-header">
           <div>
-            <span class="job-title">IT Support & Web Developer</span> – 
+            <span class="job-title">Web Development Intern</span> – 
             <span class="job-company">New Horizons Solutions</span>
           </div>
-          <span class="job-period">2023–2024</span>
+          <span class="job-period">Apr 2023 – Oct 2023</span>
         </div>
         <ul>
-          <li>Diagnosed and repaired 50+ hardware issues (laptops, servers, networking equipment)</li>
-          <li>Developed 3 responsive company websites using HTML/CSS/JavaScript</li>
-          <li>Automated inventory tracking with Python scripts, reducing manual work by 30%</li>
+          <li>Developed responsive web pages using modern HTML5, CSS3, and JavaScript (ES6+)</li>
+          <li>Collaborated on 3 client projects, implementing UI designs with 95% accuracy to mockups</li>
+          <li>Assisted in debugging and optimizing existing code for better performance</li>
+          <li>Gained experience with version control using Git in a team environment</li>
         </ul>
       </div>
       
       <div class="job">
         <div class="job-header">
           <div>
-            <span class="job-title">Freelance Tech Consultant</span> – 
-            <span class="job-company">Self-Employed</span>
+            <span class="job-title">Technical Support Assistant</span> – 
+            <span class="job-company">Freelance</span>
           </div>
           <span class="job-period">2021–Present</span>
         </div>
         <ul>
-          <li>Built custom PCs for 15+ clients with optimized cooling/power solutions</li>
-          <li>Set up smart home systems (Raspberry Pi + Home Assistant) for local businesses</li>
-          <li>Taught basic programming workshops to high school students</li>
+          <li>Built and customized 15+ PC systems for gaming and productivity use cases</li>
+          <li>Diagnosed and repaired hardware issues for personal computers and peripherals</li>
+          <li>Configured home networks and basic IoT setups using Raspberry Pi</li>
         </ul>
       </div>
     </section>
@@ -381,32 +534,32 @@
     <section id="skills">
       <h2><span class="material-icons">code</span>Skills</h2>
       <div class="skills-grid">
-        <div class="skill-tag">Python</div>
+        <div class="skill-tag">HTML5</div>
+        <div class="skill-tag">CSS3</div>
         <div class="skill-tag">JavaScript</div>
-        <div class="skill-tag">HTML/CSS</div>
-        <div class="skill-tag">Linux</div>
-        <div class="skill-tag">AWS Basics</div>
-        <div class="skill-tag">PC Building</div>
-        <div class="skill-tag">Networking</div>
-        <div class="skill-tag">Raspberry Pi</div>
+        <div class="skill-tag">Responsive Design</div>
+        <div class="skill-tag">PC Assembly</div>
+        <div class="skill-tag">Hardware Repair</div>
         <div class="skill-tag">Git</div>
-        <div class="skill-tag">UI/UX Design</div>
+        <div class="skill-tag">Raspberry Pi</div>
+        <div class="skill-tag">Technical Documentation</div>
       </div>
     </section>
 
     <section id="projects">
       <h2><span class="material-icons">folder</span>Projects</h2>
-      <h3>Smart Campus Monitoring System (Final Year Project)</h3>
+      <h3>PC Builder Web App</h3>
       <ul>
-        <li>Built IoT sensors to track classroom occupancy/temperature using ESP32</li>
-        <li>Visualized data on a React dashboard with Firebase backend</li>
-        <li>Won "Best Hardware Project" at university tech fair</li>
+        <li>Created an interactive tool that suggests compatible PC components based on user budget</li>
+        <li>Implemented real-time price checking from multiple vendors using web scraping</li>
+        <li>Designed intuitive UI with mobile-first responsive principles</li>
       </ul>
       
-      <h3>LAN Party Optimization Toolkit</h3>
+      <h3>Smart Home Controller</h3>
       <ul>
-        <li>Created scripts to automate game server deployments on local networks</li>
-        <li>Reduced setup time from 1 hour to 10 minutes for 8-player sessions</li>
+        <li>Built a centralized control system for home automation using Raspberry Pi</li>
+        <li>Integrated with IoT devices to control lighting and temperature</li>
+        <li>Developed basic web interface for remote access</li>
       </ul>
     </section>
 
@@ -415,11 +568,11 @@
       <div class="contact-grid">
         <div class="contact-card">
           <span class="material-icons contact-icon">email</span>
-          <span>hilary.ashibogwu@example.com</span>
+          <span>chukwudihilary2@gmail.com</span>
         </div>
         <div class="contact-card">
           <span class="material-icons contact-icon">phone</span>
-          <span>+234 812 345 6789</span>
+          <span>+234 705 238 2075</span>
         </div>
         <div class="contact-card">
           <span class="material-icons contact-icon">link</span>
@@ -427,15 +580,75 @@
         </div>
         <div class="contact-card">
           <span class="material-icons contact-icon">code</span>
-          <span>github.com/ashibogwu-projects</span>
+          <span>github.com/chucksop</span>
         </div>
       </div>
     </section>
 
     <footer>
       <p>© 2025 Ashibogwu Chukwudi Hilary. All rights reserved.</p>
-      <p>Built with HTML/CSS • Hosted on GitHub Pages</p>
+      <p></p>
     </footer>
   </div>
+
+  <script>
+    // PDF Download Functionality
+    document.getElementById('downloadBtn').addEventListener('click', function() {
+      const element = document.querySelector('.container');
+      const opt = {
+        margin: 10,
+        filename: 'Ashibogwu_Chukwudi_Hilary_Resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+      
+      // Show loading state
+      this.innerHTML = '<span class="material-icons" style="vertical-align: middle;">download</span> Generating PDF...';
+      
+      // Generate PDF
+      html2pdf().from(element).set(opt).save().then(() => {
+        // Reset button text after completion
+        this.innerHTML = '<span class="material-icons" style="vertical-align: middle;">download</span> Download Résumé';
+      });
+    });
+    
+    // Scroll progress indicator
+    window.onscroll = function() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    };
+    
+    // Hide navbar on scroll down
+    let lastScroll = 0;
+    window.addEventListener('scroll', function() {
+      const currentScroll = window.pageYOffset;
+      if (currentScroll <= 0) {
+        document.getElementById('navbar').classList.remove('hidden');
+        return;
+      }
+      
+      if (currentScroll > lastScroll && !document.getElementById('navbar').classList.contains('hidden')) {
+        // Scroll down
+        document.getElementById('navbar').classList.add('hidden');
+      } else if (currentScroll < lastScroll && document.getElementById('navbar').classList.contains('hidden')) {
+        // Scroll up
+        document.getElementById('navbar').classList.remove('hidden');
+      }
+      lastScroll = currentScroll;
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
 </body>
 </html>
